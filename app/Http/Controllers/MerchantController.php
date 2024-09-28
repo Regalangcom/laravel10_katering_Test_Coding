@@ -46,7 +46,6 @@ class MerchantController extends Controller
     public function profile()
     {
 
-
         if (MerchantModel::where('user_id', Session::get('user_id'))->first() == null) {
             return redirect()->route('merchant.create');
         }
@@ -60,7 +59,7 @@ class MerchantController extends Controller
      */
     public function create_merchant()
     {
-        return view('create_merchant');
+        return view('merchnat.create_merchaint');
     }
     public function store_merchant(Request $request)
     {
@@ -133,10 +132,17 @@ class MerchantController extends Controller
     {
         $merchant = MerchantModel::where('user_id', Session::get('user_id'))->first();
 
+        // Check if the merchant exists
+        if (!$merchant) {
+            return redirect()->back()->with('error', 'Merchant not found.');
+        }
+
+        // Retrieve orders for the merchant
         $orders = Order::whereHas('menu', function ($query) use ($merchant) {
             $query->where('merchant_id', $merchant->id);
         })->with('menu')->get();
 
+        // Pass orders to the view
         return view('merchnat.order', compact('orders'));
     }
 

@@ -81,7 +81,7 @@ class RegisterController extends Controller
         if ($user->role == 'customer') {
             return redirect()->route('customer.dashboard');
         } elseif ($user->role == 'merchant') {
-            return redirect()->route('merchant.create');
+            return redirect()->route('merchant.create_merchaint');
         }
 
         return redirect()->route('/');
