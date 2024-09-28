@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route untuk Merchant
     Route::group(['middleware' => 'role:merchant'], function () {
         Route::get('/merchant/dashboard', [MerchantController::class, 'index'])->name('merchant.dashboard');
-        Route::get('/merchant/create', [MerchantController::class, 'create_merchant'])->name('merchnat.create');
+        Route::get('/merchant/create', [MerchantController::class, 'create_merchant'])->name('merchant.create');
         Route::post('/merchant/create', [MerchantController::class, 'store_merchant'])->name('merchant.store');
         Route::get('/merchant/menu', [MerchantController::class, 'menu'])->name('merchant.menu');
         Route::get('/merchant/menu/create', [MerchantController::class, 'create_menu'])->name('merchant.create_menu');
